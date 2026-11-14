@@ -1,5 +1,5 @@
 {
-  "umbral_aviso": 75,
+  "umbral_aviso": 40,
   "max_paginas_default": 300,
   "tiendas": [
     { "id": "juleriaque",   "nombre": "Juleriaque",    "url": "https://www.juleriaque.com.ar",         "plataforma": "auto" },
