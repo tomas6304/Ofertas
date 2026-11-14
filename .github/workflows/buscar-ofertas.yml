@@ -28,6 +28,9 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
           SITE_URL: ${{ vars.SITE_URL }}
         run: python scraper/scrape.py
       - name: Guardar datos
