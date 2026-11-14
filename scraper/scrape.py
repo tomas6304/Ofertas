@@ -14,6 +14,9 @@ import time
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+import smtplib
+from email.message import EmailMessage
+
 import requests
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -275,7 +278,21 @@ def ntfy(texto):
     if not r.ok:
         print("ntfy falló:", r.status_code)
 
-
+def correo(texto):
+    user, clave, dest = os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"), os.getenv("EMAIL_TO")
+    if not (user and clave):
+        return
+    m = EmailMessage()
+    m["Subject"] = "Ofertas de perfumes"
+    m["From"] = user
+    m["To"] = dest or user
+    m.set_content(texto)
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as s:
+            s.login(user, clave)
+            s.send_message(m)
+    except Exception as e:
+        print("Correo falló:", e)
 def avisar(nuevas, nombres):
     nuevas = sorted(nuevas, key=lambda p: -p["descuento"])
     for i in range(0, len(nuevas), 10):
@@ -290,6 +307,7 @@ def avisar(nuevas, nombres):
         texto = "\n".join(lineas)
         telegram(texto)
         ntfy(texto)
+              correo(texto)
 
 
 # ---------- principal ----------
