@@ -1,0 +1,9 @@
+{
+  "umbral_aviso": 40,
+  "tiendas": [
+    { "id": "juleriaque",   "nombre": "Juleriaque",    "url": "https://www.juleriaque.com.ar",    "plataforma": "auto" },
+    { "id": "rouge",        "nombre": "Rouge",         "url": "https://www.perfumeriasrouge.com", "plataforma": "auto" },
+    { "id": "laparfumerie", "nombre": "La Parfumerie", "url": "https://www.parfumerie.com.ar",    "plataforma": "auto" },
+    { "id": "ruizyroca",    "nombre": "Ruiz y Roca",   "url": "https://www.ruizyroca.com.ar",     "plataforma": "auto" }
+  ]
+}
