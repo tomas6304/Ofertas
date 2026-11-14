@@ -307,8 +307,7 @@ def avisar(nuevas, nombres):
         texto = "\n".join(lineas)
         telegram(texto)
         ntfy(texto)
-              correo(texto)
-
+        correo(texto) 
 
 # ---------- principal ----------
 def cargar(path, defecto):
