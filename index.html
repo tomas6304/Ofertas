@@ -2,89 +2,141 @@
 <html lang="es-AR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ofertas de perfumes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ofertas de perfumería y belleza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ECEEF0; --surface:#FFFFFF; --ink:#15171C; --muted:#667085; --line:#D9DDE3;
-  --garnet:#8E1B3A; --garnet-soft:#F6E7EB; --green:#1B7F4B; --green-soft:#E3F3EA;
-  --serif:"Fraunces",Georgia,serif; --sans:"Figtree",system-ui,sans-serif;
+  --bg:#EEF0F3; --surface:#FFFFFF; --ink:#15171C; --muted:#667085; --line:#DCE0E6;
+  --garnet:#8E1B3A; --garnet-ink:#FFFFFF; --garnet-soft:#F6E7EB; --green:#1B7F4B; --green-soft:#E3F3EA; --amber:#9A5B00; --amber-soft:#FBF0DB;
+  --serif:"Fraunces",Georgia,serif; --sans:"Figtree",system-ui,sans-serif; --r:16px;
 }
 @media (prefers-color-scheme:dark){
-  :root{--bg:#121316;--surface:#1B1D22;--ink:#EEF0F3;--muted:#9AA1AD;--line:#2D3038;
-        --garnet:#E0657F;--garnet-soft:#3A1B25;--green:#5CCB8D;--green-soft:#17301F}
+  :root{--bg:#111215;--surface:#1A1C21;--ink:#EEF0F3;--muted:#9AA1AD;--line:#2B2E36;
+        --garnet:#E0657F;--garnet-ink:#1A0A10;--garnet-soft:#3A1B25;--green:#5CCB8D;--green-soft:#16301F;--amber:#F0B45A;--amber-soft:#33270F}
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 var(--sans);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-.wrap{max-width:860px;margin:0 auto;padding:28px 16px 64px}
-h1{font:700 clamp(30px,7vw,46px)/1.05 var(--serif);margin:0 0 6px;letter-spacing:-.01em}
-.sub{color:var(--muted);margin:0 0 22px;font-size:14px}
-.tabs{display:flex;gap:6px;margin-bottom:14px}
-.tab{border:1px solid var(--line);background:transparent;color:var(--ink);padding:9px 16px;border-radius:999px;font:500 15px var(--sans);cursor:pointer}
-.tab[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.controls{display:grid;gap:10px;margin-bottom:10px}
-input[type=search],select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:400 16px var(--sans)}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;border-radius:999px;font:500 14px var(--sans);cursor:pointer}
-.chip[aria-pressed=true]{border-color:var(--garnet);background:var(--garnet-soft);color:var(--garnet)}
-label.chk{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-.count{font-size:13px;color:var(--muted);margin:14px 0 4px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 var(--sans);padding-bottom:env(safe-area-inset-bottom)}
 :focus-visible{outline:2px solid var(--garnet);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
 
-/* lista de ofertas */
-.item{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
-.item a.thumb{width:72px;height:72px;border-radius:10px;background:var(--surface);display:grid;place-items:center;overflow:hidden}
-.item img{width:100%;height:100%;object-fit:contain}
-.brand{font-size:12px;color:var(--muted);font-weight:600}
-.name{font-weight:600;line-height:1.25;margin:1px 0 3px;overflow-wrap:anywhere}
+/* cabecera */
+header{padding:34px 0 20px}
+.kicker{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--garnet);margin-bottom:8px}
+h1{font:700 clamp(32px,6vw,52px)/1.02 var(--serif);margin:0;letter-spacing:-.015em}
+.sub{color:var(--muted);margin:10px 0 0;font-size:14px}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--muted)}
+.stat b{color:var(--ink);font-weight:700}
+.stale{margin-top:14px;padding:10px 14px;border-radius:12px;background:var(--amber-soft);color:var(--amber);font-size:14px;font-weight:500}
+
+/* navegación por secciones */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.pills{display:flex;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 16px;border-radius:999px;font:600 14px var(--sans);cursor:pointer;white-space:nowrap}
+.pill small{font-weight:500;color:var(--muted);margin-left:5px}
+.pill[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pill[aria-pressed=true] small{color:inherit;opacity:.7}
+.pills.sub{padding:0 0 12px}
+.pills.sub .pill{padding:7px 14px;font-size:13px;font-weight:500;background:transparent}
+.pills.sub .pill[aria-pressed=true]{background:var(--garnet);border-color:var(--garnet);color:var(--garnet-ink)}
+
+/* controles */
+.controls{display:grid;gap:12px;padding:18px 0 6px}
+input[type=search],select{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);font:400 16px var(--sans)}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:center}
+.seg{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px}
+.seg button{flex:1;border:0;background:transparent;color:var(--muted);padding:9px 8px;border-radius:10px;font:600 14px var(--sans);cursor:pointer}
+.seg button[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 13px;border-radius:999px;font:500 13px var(--sans);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--garnet);background:var(--garnet-soft);color:var(--garnet)}
+label.chk{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);cursor:pointer}
+.count{font-size:13px;color:var(--muted);margin:14px 0 12px}
+
+/* grilla de productos */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:14px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.09)}
+.ph{display:block;aspect-ratio:1/1;background:color-mix(in srgb,var(--bg) 70%,var(--surface));display:grid;place-items:center;overflow:hidden}
+.ph img{width:86%;height:86%;object-fit:contain;mix-blend-mode:multiply}
+@media (prefers-color-scheme:dark){.ph img{mix-blend-mode:normal;background:#fff;border-radius:10px;padding:4px;width:78%;height:78%}}
+.off{position:absolute;top:10px;left:10px;background:var(--garnet);color:var(--garnet-ink);font:700 13px var(--sans);padding:4px 9px;border-radius:8px}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:3px;flex:1}
+.brand{font:700 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.name{font:600 15px/1.25 var(--sans);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .name a{color:inherit;text-decoration:none}
-.name a:hover{text-decoration:underline}
-.meta{font-size:13px;color:var(--muted)}
-.price{font-weight:600}
-.old{text-decoration:line-through;color:var(--muted);font-size:13px;margin-left:6px}
-.pct{font:700 34px/1 var(--serif);color:var(--garnet);text-align:right}
-.pct small{display:block;font:500 11px var(--sans);color:var(--muted);margin-top:4px}
-.tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:6px;margin-right:6px}
+.meta{font-size:12.5px;color:var(--muted)}
+.pr{margin-top:auto;padding-top:8px;display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px}
+.price{font:700 19px var(--sans)}
+.old{text-decoration:line-through;color:var(--muted);font-size:13px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.tag{font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px}
 .tag.down{background:var(--green-soft);color:var(--green)}
 .tag.out{background:var(--line);color:var(--muted)}
-svg.spark{vertical-align:middle;margin-left:6px}
+.tag.nicho{background:var(--garnet-soft);color:var(--garnet)}
+svg.spark{margin-left:auto;align-self:center}
+.go{display:block;text-align:center;margin-top:10px;padding:9px;border-radius:10px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font:600 13px var(--sans)}
+.go:hover{background:var(--ink);color:var(--bg)}
 
 /* comparador */
-.group{padding:16px 0;border-bottom:1px solid var(--line)}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px}
 .group h3{font:600 17px/1.25 var(--serif);margin:0 0 2px}
-.group .save{font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px}
-.offer{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;color:inherit;font-size:15px}
-.offer:hover{background:var(--surface)}
+.group .save{font-size:13px;color:var(--green);font-weight:700;margin-bottom:8px}
+.offer{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;color:inherit;font-size:15px}
+.offer:hover{background:var(--bg)}
 .offer.best{background:var(--green-soft)}
 .offer .t{font-weight:500}
 .offer .best-l{font-size:11px;font-weight:700;color:var(--green);margin-left:6px}
-.more{display:block;margin:18px auto 0;padding:11px 22px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 15px var(--sans);cursor:pointer}
-.empty{padding:40px 0;color:var(--muted);text-align:center}
-.status{margin-top:34px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--green)}
+
+.more{display:block;margin:24px auto 0;padding:12px 26px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 15px var(--sans);cursor:pointer}
+.empty{padding:56px 0;color:var(--muted);text-align:center}
+.status{margin:44px 0 40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);display:grid;gap:6px}
+.status div{display:flex;gap:8px;align-items:baseline}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--green);transform:translateY(-1px)}
 .dot.bad{background:var(--garnet)}
-@media (max-width:420px){.pct{font-size:28px}.item{grid-template-columns:60px 1fr auto}.item a.thumb{width:60px;height:60px}}
+.status em{font-style:normal;opacity:.8;overflow-wrap:anywhere}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+
+@media (max-width:640px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .row{grid-template-columns:1fr 1fr}
+  .row .seg{grid-column:1/-1}
+  .price{font-size:17px} .body{padding:10px 11px 12px} .go{display:none}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Ofertas de perfumes</h1>
+<header class="wrap">
+  <div class="kicker">Comparador de precios</div>
+  <h1>Ofertas de perfumería<br>y belleza</h1>
   <p class="sub" id="sub">Cargando…</p>
+  <div class="stats" id="stats"></div>
+  <div class="stale" id="stale" hidden></div>
+</header>
 
-  <div class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-tab="ofertas">Ofertas</button>
-    <button class="tab" role="tab" aria-selected="false" data-tab="comparar">Comparar tiendas</button>
+<div class="nav">
+  <div class="wrap">
+    <div class="pills" id="cats" aria-label="Secciones"></div>
+    <div class="pills sub" id="subs" aria-label="Perfumes por tipo" hidden></div>
   </div>
+</div>
 
+<main class="wrap">
   <div class="controls">
-    <input type="search" id="q" placeholder="Buscar: Sauvage, Good Girl, Chanel…" aria-label="Buscar perfume">
+    <input type="search" id="q" placeholder="Buscar: Sauvage, Good Girl, Chanel…" aria-label="Buscar producto">
     <div class="chips" id="chips" aria-label="Tiendas"></div>
-    <div class="row2" id="ofertasCtl">
+    <div class="row">
+      <div class="seg" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="ofertas">Ofertas</button>
+        <button role="tab" aria-selected="false" data-tab="comparar">Comparar tiendas</button>
+      </div>
       <select id="min" aria-label="Descuento mínimo">
         <option value="0">Cualquier descuento</option>
         <option value="20">Desde 20%</option>
@@ -106,21 +158,23 @@ svg.spark{vertical-align:middle;margin-left:6px}
   <div id="list"></div>
   <button class="more" id="more" hidden>Ver más</button>
   <div class="status" id="status"></div>
-</div>
+  <p class="note">El género de los perfumes y la sección de cada producto se deducen de los datos de cada tienda, así que pueden tener errores. Confirmá siempre precio y tamaño en la tienda antes de comprar.</p>
+</main>
 
 <script>
 const $ = s => document.querySelector(s);
 const money = new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const st = {tab:'ofertas', q:'', tiendas:new Set(), min:40, sort:'desc', stock:true, n:50};
+const CATS = [['todo','Todo'],['perfumes','Perfumes'],['maquillaje','Maquillaje'],['pelo','Pelo'],['piel','Piel'],['cuerpo','Cuerpo'],['otros','Otros']];
+const SUBS = [['','Todos'],['mujer','Mujer'],['hombre','Hombre'],['unisex','Unisex'],['nicho','Nicho']];
+const st = {tab:'ofertas', cat:'todo', sub:'', q:'', tiendas:new Set(), min:40, sort:'desc', stock:true, n:48};
 let D = {productos:[], tiendas:{}}, H = {};
 
-const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-  .replace(/\d+(?:[.,]\d+)?\s*ml/g,' ').replace(/[^a-z0-9 ]/g,' ')
-  .replace(/\b(perfume|para|de|el|la|spray|vaporizador|x|ml|mujer|hombre|women|men|unisex)\b/g,' ')
-  .replace(/\s+/g,' ').trim();
 const plain = s => (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const norm = s => plain(s).replace(/\d+(?:[.,]\d+)?\s*ml/g,' ').replace(/[^a-z0-9 ]/g,' ')
+  .replace(/\b(perfume|para|de|el|la|spray|vaporizador|x|ml|mujer|hombre|women|men|unisex)\b/g,' ').replace(/\s+/g,' ').trim();
 const ppm = p => p.ml ? p.precio / p.ml : Infinity;
+const catDe = p => p.cat || 'otros';
 
 function ago(iso){
   if(!iso) return 'sin datos todavía';
@@ -134,47 +188,76 @@ function ago(iso){
 function spark(id){
   const h = H[id]; if(!h || h.length < 2) return '';
   const v = h.map(x => x[1]), min = Math.min(...v), max = Math.max(...v), r = max - min || 1;
-  const pts = v.map((y,i) => `${(i/(v.length-1)*54+2).toFixed(1)},${(18-((y-min)/r)*16).toFixed(1)}`).join(' ');
+  const pts = v.map((y,i) => `${(i/(v.length-1)*50+2).toFixed(1)},${(18-((y-min)/r)*16).toFixed(1)}`).join(' ');
   const down = v[v.length-1] < v[0];
-  return `<svg class="spark" width="58" height="20" viewBox="0 0 58 20" role="img" aria-label="Historial de precio"><polyline points="${pts}" fill="none" stroke="${down?'var(--green)':'var(--muted)'}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+  return `<svg class="spark" width="54" height="20" viewBox="0 0 54 20" role="img" aria-label="Historial de precio"><polyline points="${pts}" fill="none" stroke="${down?'var(--green)':'var(--muted)'}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
 }
 
-function filtrados(){
+/* ---- filtros ---- */
+const porTiendaYBusqueda = () => {
   const q = plain(st.q);
   return D.productos.filter(p =>
     (!st.stock || p.stock) &&
     (!st.tiendas.size || st.tiendas.has(p.tienda)) &&
     (!q || plain(p.marca + ' ' + p.nombre).includes(q)));
+};
+const esOferta = p => st.min === 0 || (p.lista && p.descuento >= st.min);
+const enSeccion = p => {
+  if(st.cat !== 'todo' && catDe(p) !== st.cat) return false;
+  if(st.cat === 'perfumes' && st.sub){
+    if(st.sub === 'nicho') return !!p.nicho;
+    return p.genero === st.sub;
+  }
+  return true;
+};
+
+function renderNav(){
+  const base = porTiendaYBusqueda().filter(st.tab === 'ofertas' ? esOferta : () => true);
+  const cuenta = {todo: base.length};
+  base.forEach(p => { const c = catDe(p); cuenta[c] = (cuenta[c]||0) + 1; });
+  $('#cats').innerHTML = CATS.filter(([k]) => k === 'todo' || cuenta[k]).map(([k,n]) =>
+    `<button class="pill" aria-pressed="${st.cat===k}" data-cat="${k}">${n}<small>${(cuenta[k]||0).toLocaleString('es-AR')}</small></button>`).join('');
+  const perf = base.filter(p => catDe(p) === 'perfumes');
+  const c = {'': perf.length, mujer: 0, hombre: 0, unisex: 0, nicho: 0};
+  perf.forEach(p => { if(p.genero) c[p.genero]++; if(p.nicho) c.nicho++; });
+  $('#subs').hidden = st.cat !== 'perfumes';
+  $('#subs').innerHTML = SUBS.map(([k,n]) =>
+    `<button class="pill" aria-pressed="${st.sub===k}" data-sub="${k}">${n}<small>${c[k].toLocaleString('es-AR')}</small></button>`).join('');
+}
+
+function tarjeta(p){
+  const h = H[p.id], bajo = h && h.length > 1 && h[h.length-1][1] < h[h.length-2][1];
+  const pml = p.ml ? ` · ${money.format(p.precio/p.ml)}/ml` : '';
+  const tienda = D.tiendas[p.tienda]?.nombre || p.tienda;
+  return `<article class="card">
+    <a class="ph" href="${esc(p.url)}" target="_blank" rel="noopener">${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" onerror="this.remove()">` : ''}</a>
+    ${p.descuento ? `<span class="off">−${p.descuento}%</span>` : ''}
+    <div class="body">
+      <div class="brand">${esc(p.marca || tienda)}</div>
+      <div class="name"><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.nombre)}</a></div>
+      <div class="meta">${esc(tienda)}${pml}</div>
+      <div class="tags">${bajo?'<span class="tag down">Bajó de precio</span>':''}${p.nicho?'<span class="tag nicho">Nicho</span>':''}${p.stock?'':'<span class="tag out">Sin stock</span>'}</div>
+      <div class="pr"><span class="price">${money.format(p.precio)}</span>${p.lista?`<span class="old">${money.format(p.lista)}</span>`:''}${spark(p.id)}</div>
+      <a class="go" href="${esc(p.url)}" target="_blank" rel="noopener">Ir a ${esc(tienda)} →</a>
+    </div>
+  </article>`;
 }
 
 function renderOfertas(){
-  let L = filtrados().filter(p => p.descuento >= st.min && (st.min > 0 || true));
-  if(st.min > 0) L = L.filter(p => p.lista);
+  let L = porTiendaYBusqueda().filter(esOferta).filter(enSeccion);
   L.sort(st.sort === 'precio' ? (a,b) => a.precio - b.precio
        : st.sort === 'ml' ? (a,b) => ppm(a) - ppm(b)
        : (a,b) => b.descuento - a.descuento || a.precio - b.precio);
-  $('#count').textContent = `${L.length} ${L.length === 1 ? 'oferta' : 'ofertas'}`;
-  if(!L.length){ $('#list').innerHTML = '<div class="empty">No hay ofertas con estos filtros. Probá bajar el descuento mínimo.</div>'; $('#more').hidden = true; return; }
-  $('#list').innerHTML = L.slice(0, st.n).map(p => {
-    const h = H[p.id], bajo = h && h.length > 1 && h[h.length-1][1] < h[h.length-2][1];
-    const pml = p.ml ? ` · ${money.format(p.precio/p.ml)}/ml` : '';
-    return `<div class="item">
-      <a class="thumb" href="${esc(p.url)}" target="_blank" rel="noopener">${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" onerror="this.remove()">` : ''}</a>
-      <div>
-        <div class="brand">${esc(p.marca)}</div>
-        <div class="name"><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.nombre)}</a></div>
-        <div class="meta">${bajo?'<span class="tag down">Bajó de precio</span>':''}${p.stock?'':'<span class="tag out">Sin stock</span>'}${esc(D.tiendas[p.tienda]?.nombre || p.tienda)}${pml}</div>
-        <div><span class="price">${money.format(p.precio)}</span>${p.lista?`<span class="old">${money.format(p.lista)}</span>`:''}${spark(p.id)}</div>
-      </div>
-      <div class="pct">${p.descuento ? '-'+p.descuento+'%' : ''}${p.descuento ? '<small>vs. lista</small>' : ''}</div>
-    </div>`;
-  }).join('');
+  $('#count').textContent = `${L.length.toLocaleString('es-AR')} ${L.length === 1 ? 'producto' : 'productos'}`;
+  if(!L.length){ $('#list').innerHTML = '<div class="empty">No hay productos con estos filtros.<br>Probá bajar el descuento mínimo o cambiar de sección.</div>'; $('#more').hidden = true; return; }
+  $('#list').innerHTML = `<div class="grid">${L.slice(0, st.n).map(tarjeta).join('')}</div>`;
   $('#more').hidden = L.length <= st.n;
 }
 
 function renderComparar(){
   const g = new Map();
-  for(const p of filtrados()){
+  for(const p of porTiendaYBusqueda().filter(enSeccion)){
+    if(catDe(p) !== 'perfumes' && st.cat === 'todo') continue;
     const key = [...new Set(norm(p.marca + ' ' + p.nombre).split(' '))].sort().join(' ') + '|' + (p.ml ?? '?');
     if(!g.has(key)) g.set(key, []);
     g.get(key).push(p);
@@ -189,35 +272,44 @@ function renderComparar(){
     grupos.push({L, ahorro, pct: Math.round(ahorro / L[L.length-1].precio * 100)});
   }
   grupos.sort((a,b) => b.pct - a.pct);
-  $('#count').textContent = `${grupos.length} perfumes en 2 o más tiendas`;
-  if(!grupos.length){ $('#list').innerHTML = '<div class="empty">No encontré el mismo perfume en dos tiendas con estos filtros.</div>'; $('#more').hidden = true; return; }
-  $('#list').innerHTML = grupos.slice(0, st.n).map(({L, ahorro, pct}) => {
-    const p0 = L[0];
-    return `<div class="group">
-      <h3>${esc(p0.nombre)}</h3>
+  $('#count').textContent = `${grupos.length.toLocaleString('es-AR')} productos en 2 o más tiendas`;
+  if(!grupos.length){ $('#list').innerHTML = '<div class="empty">No encontré el mismo producto en dos tiendas con estos filtros.</div>'; $('#more').hidden = true; return; }
+  $('#list').innerHTML = grupos.slice(0, st.n).map(({L, ahorro, pct}) => `<div class="group">
+      <h3>${esc(L[0].nombre)}</h3>
       <div class="save">Ahorrás ${money.format(ahorro)} (${pct}%) eligiendo la más barata</div>
       ${L.map((p,i) => `<a class="offer ${i===0?'best':''}" href="${esc(p.url)}" target="_blank" rel="noopener">
         <span class="t">${esc(D.tiendas[p.tienda]?.nombre || p.tienda)}${i===0?'<span class="best-l">Mejor precio</span>':''}</span>
         <span>${money.format(p.precio)}</span></a>`).join('')}
-    </div>`;
-  }).join('');
+    </div>`).join('');
   $('#more').hidden = grupos.length <= st.n;
 }
 
 function render(){
-  $('#ofertasCtl').style.display = st.tab === 'ofertas' ? '' : 'none';
+  $('#min').parentElement.querySelector('#min').style.display = st.tab === 'ofertas' ? '' : 'none';
+  $('#sort').style.display = st.tab === 'ofertas' ? '' : 'none';
+  renderNav();
   st.tab === 'ofertas' ? renderOfertas() : renderComparar();
 }
 
 function init(){
   const ts = Object.entries(D.tiendas);
   $('#chips').innerHTML = ts.map(([id,t]) => `<button class="chip" aria-pressed="false" data-id="${esc(id)}">${esc(t.nombre)}</button>`).join('');
-  $('#sub').textContent = D.productos.length
-    ? `${D.productos.length.toLocaleString('es-AR')} productos en ${ts.length} tiendas · actualizado ${ago(D.actualizado)}`
+  const total = D.productos.length;
+  $('#sub').textContent = total
+    ? `${total.toLocaleString('es-AR')} productos en ${ts.length} tiendas · actualizado ${ago(D.actualizado)}`
     : 'Todavía no hay datos.';
+  const ofertas = D.productos.filter(p => p.stock && p.descuento >= 40);
+  const mejor = D.productos.reduce((m,p) => p.stock && p.descuento > m ? p.descuento : m, 0);
+  $('#stats').innerHTML = total ? `<span class="stat"><b>${ofertas.length.toLocaleString('es-AR')}</b> ofertas desde 40%</span>` +
+    (mejor ? `<span class="stat">Mejor descuento: <b>−${mejor}%</b></span>` : '') +
+    `<span class="stat"><b>${ts.filter(([,t]) => t.ok).length}</b> de ${ts.length} tiendas al día</span>` : '';
+  if(D.actualizado && (Date.now() - new Date(D.actualizado)) > 8*3600*1000){
+    $('#stale').hidden = false;
+    $('#stale').textContent = `Los datos tienen ${ago(D.actualizado).replace('hace ','')}: la búsqueda automática puede estar fallando. Revisá la pestaña Actions en GitHub.`;
+  }
   $('#status').innerHTML = ts.map(([id,t]) =>
-    `<span title="${esc(t.error || '')}"><span class="dot ${t.ok?'':'bad'}"></span>${esc(t.nombre)}: ${t.ok ? t.cantidad + ' productos' : 'con problemas'}</span>`).join('');
-  if(!D.productos.length){
+    `<div><span class="dot ${t.ok?'':'bad'}"></span><span><b>${esc(t.nombre)}</b>: ${t.ok ? t.cantidad.toLocaleString('es-AR') + ' productos' : 'sin datos nuevos'}${t.ok ? '' : ` <em>(${esc((t.error||'').slice(0,160))})</em>`}</span></div>`).join('');
+  if(!total){
     $('#list').innerHTML = '<div class="empty">Todavía no se cargaron precios.<br>En GitHub andá a Actions → “Buscar ofertas” → Run workflow.</div>';
     return;
   }
@@ -225,22 +317,25 @@ function init(){
 }
 
 document.addEventListener('click', e => {
-  const tab = e.target.closest('.tab'), chip = e.target.closest('.chip');
-  if(tab){ st.tab = tab.dataset.tab; st.n = 50; document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', b === tab)); render(); }
-  if(chip){ const id = chip.dataset.id; st.tiendas.has(id) ? st.tiendas.delete(id) : st.tiendas.add(id); chip.setAttribute('aria-pressed', st.tiendas.has(id)); st.n = 50; render(); }
+  const seg = e.target.closest('.seg button'), chip = e.target.closest('.chip'),
+        cat = e.target.closest('[data-cat]'), sub = e.target.closest('[data-sub]');
+  if(seg){ st.tab = seg.dataset.tab; st.n = 48; document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-selected', b === seg)); render(); }
+  if(chip){ const id = chip.dataset.id; st.tiendas.has(id) ? st.tiendas.delete(id) : st.tiendas.add(id); chip.setAttribute('aria-pressed', st.tiendas.has(id)); st.n = 48; render(); }
+  if(cat){ st.cat = cat.dataset.cat; st.sub = ''; st.n = 48; render(); }
+  if(sub){ st.sub = sub.dataset.sub; st.n = 48; render(); }
 });
-$('#q').addEventListener('input', e => { st.q = e.target.value; st.n = 50; render(); });
-$('#min').addEventListener('change', e => { st.min = +e.target.value; st.n = 50; render(); });
+$('#q').addEventListener('input', e => { st.q = e.target.value; st.n = 48; render(); });
+$('#min').addEventListener('change', e => { st.min = +e.target.value; st.n = 48; render(); });
 $('#sort').addEventListener('change', e => { st.sort = e.target.value; render(); });
 $('#stock').addEventListener('change', e => { st.stock = e.target.checked; render(); });
-$('#more').addEventListener('click', () => { st.n += 50; render(); });
+$('#more').addEventListener('click', () => { st.n += 48; render(); });
 
 const bust = '?t=' + Date.now();
 Promise.all([
-  fetch('data/precios.json' + bust).then(r => r.json()),
-  fetch('data/historial.json' + bust).then(r => r.json()).catch(() => ({}))
+  fetch('data/precios.json' + bust, {cache:'no-store'}).then(r => r.json()),
+  fetch('data/historial.json' + bust, {cache:'no-store'}).then(r => r.json()).catch(() => ({}))
 ]).then(([d, h]) => { D = d; H = h; init(); })
-  .catch(() => { $('#sub').textContent = 'No pude cargar los datos.'; $('#list').innerHTML = '<div class="empty">Abrí la página desde GitHub Pages (no desde el archivo suelto) para que cargue data/precios.json.</div>'; });
+  .catch(() => { $('#sub').textContent = 'No pude cargar los datos.'; $('#list').innerHTML = '<div class="empty">Abrí la página desde su dirección de GitHub Pages (no desde el archivo suelto) para que cargue data/precios.json.</div>'; });
 </script>
 </body>
 </html>
