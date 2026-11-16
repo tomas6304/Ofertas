@@ -3,7 +3,6 @@
   "tiendas": [
     { "id": "juleriaque",   "nombre": "Juleriaque",    "url": "https://www.juleriaque.com.ar",          "plataforma": "auto" },
     { "id": "rouge",        "nombre": "Rouge",         "url": "https://www.perfumeriasrouge.com",       "plataforma": "auto" },
-    { "id": "laparfumerie", "nombre": "Parfumerie",    "url": "https://www.parfumerie.com.ar",          "plataforma": "auto" },
     { "id": "beauty24",     "nombre": "Beauty24",      "url": "https://www.beauty24.com.ar",            "plataforma": "auto" },
     { "id": "pigmento",     "nombre": "Pigmento",      "url": "https://www.perfumeriaspigmento.com.ar", "plataforma": "auto" },
     { "id": "ruizyroca",    "nombre": "Ruiz y Roca",   "url": "https://www.ruizyroca.com.ar",           "plataforma": "auto" },
@@ -13,6 +12,6 @@
     { "id": "qpoint",       "nombre": "Qpoint",        "url": "https://www.qpoint.com.ar",              "plataforma": "auto" },
     { "id": "getthelook",   "nombre": "Get The Look",  "url": "https://www.getthelook.com.ar",          "plataforma": "auto" },
     { "id": "oudmaison",    "nombre": "OUD Maison",    "url": "https://www.oudmaison.com.ar",           "plataforma": "auto", "nicho": true, "solo_perfumes": true },
-    { "id": "editionprivee","nombre": "Édition Privée","url": "https://www.editionprivee.com.ar",       "plataforma": "auto", "nicho": true, "solo_perfumes": true }
+    { "id": "editionprivee","nombre": "Édition Privée","url": "https://www.editionprivee.com",          "plataforma": "auto", "nicho": true, "solo_perfumes": true }
   ]
 }
