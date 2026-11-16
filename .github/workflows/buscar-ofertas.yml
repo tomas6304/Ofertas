@@ -2,11 +2,13 @@ name: Buscar ofertas
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
-  workflow_dispatch:
+    - cron: "17 */3 * * *"   # cada 3 horas, al minuto 17 (hora UTC; evita la hora pico de GitHub)
+  workflow_dispatch:          # botón "Run workflow" para correrlo a mano
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: buscar-ofertas
@@ -15,7 +17,10 @@ concurrency:
 jobs:
   buscar:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,10 +37,22 @@ jobs:
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           SITE_URL: ${{ vars.SITE_URL }}
-        run: python scraper/scrape.py
-      - name: Guardar datos
+        run: python -u scraper/scrape.py
+      - name: Guardar datos en el repo
         run: |
           git config user.name "ofertas-bot"
           git config user.email "ofertas-bot@users.noreply.github.com"
           git add data
-          git diff --cached --quiet || (git commit -m "Datos $(date -u +'%Y-%m-%d %H:%M')" && git push)
+          git diff --cached --quiet || (git commit -m "Datos $(date -u +'%Y-%m-%d %H:%M')" && git pull --rebase && git push)
+      - name: Armar el sitio
+        run: |
+          mkdir _site
+          cp index.html _site/
+          cp -r data _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Publicar la página
+        id: deploy
+        uses: actions/deploy-pages@v4
